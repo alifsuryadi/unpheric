@@ -1,7 +1,6 @@
-
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { Play, Heart, MoreHorizontal } from 'lucide-react';
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { Play, Heart, MoreHorizontal } from "lucide-react";
 
 const SpotifyMockup = () => {
   const phoneRef = useRef<HTMLDivElement>(null);
@@ -12,10 +11,10 @@ const SpotifyMockup = () => {
         const rect = phoneRef.current.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
-        
+
         const deltaX = (e.clientX - centerX) / 20;
         const deltaY = (e.clientY - centerY) / 20;
-        
+
         gsap.to(phoneRef.current, {
           duration: 0.3,
           rotateY: deltaX,
@@ -25,10 +24,10 @@ const SpotifyMockup = () => {
       }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    
+    window.addEventListener("mousemove", handleMouseMove);
+
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
@@ -37,7 +36,7 @@ const SpotifyMockup = () => {
       <div
         ref={phoneRef}
         className="relative w-64 h-[500px] bg-gradient-to-br from-gray-900 to-black rounded-[2.5rem] p-2 shadow-2xl glow-purple"
-        style={{ transformStyle: 'preserve-3d' }}
+        style={{ transformStyle: "preserve-3d" }}
       >
         {/* Phone Frame */}
         <div className="w-full h-full bg-black rounded-[2rem] overflow-hidden relative">
@@ -82,7 +81,7 @@ const SpotifyMockup = () => {
               </div>
               <div className="flex justify-between text-xs text-gray-400 mt-1">
                 <span>1:23</span>
-                <span>3:45</span>
+                <span>3:04</span>
               </div>
             </div>
 

@@ -1,73 +1,75 @@
-# Welcome to your Lovable project
+# Unpheric - Future Bass Artist Portfolio Website
 
-## Project info
+Welcome to the official source code of **Unpheric's** immersive and modern personal website.
 
-**URL**: https://lovable.dev/projects/9416ffba-2a30-469c-aa09-a2fc8fcb9bca
+## 🌌 About Unpheric
 
-## How can I edit this code?
+**Unpheric** is a Future Bass musical artist who invites listeners to dive into immersive soundscapes of emotional energy and powerful rhythm. With over 6 years of experience using FL Studio, Unpheric crafts sound journeys that blend dreamy melodies with bold basslines. This website serves as the central hub for fans to discover music, explore albums, and collaborate.
 
-There are several ways of editing your application.
+> _"Gain creativity with FL Studio"  
+> Dive into the world of future bass 🎶  
+> 6 years of learning 🎹📚  
+> Let's make some music! 🎧_
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/9416ffba-2a30-469c-aa09-a2fc8fcb9bca) and start prompting.
+## 🚀 Project Info
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Live URL**: [https://lovable.dev/projects/9416ffba-2a30-469c-aa09-a2fc8fcb9bca](https://lovable.dev/projects/9416ffba-2a30-469c-aa09-a2fc8fcb9bca)
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🛠️ Tech Stack
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+This project is built using the following technologies:
 
-Follow these steps:
+- [Next.js](https://nextjs.org/) with **TypeScript**
+- [Tailwind CSS](https://tailwindcss.com/) for responsive and utility-first styling
+- [GSAP (GreenSock Animation Platform)](https://greensock.com/gsap/) for animations, transitions, and interactions
+- [shadcn/ui](https://ui.shadcn.com/) for elegant UI components
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## ✨ Features
 
-# Step 3: Install the necessary dependencies.
-npm i
+- **Mobile-first design** with immersive layout and atmospheric feel
+- **Sticky transparent navbar** with animated active indicator
+- **GSAP animations** for text fades, scroll effects, cursor parallax, and hover interactions
+- **Album Showcase** with hover glow effects and a dramatic story page
+- **Responsive grid** for album display and platform logos
+- **Interactive hero section** with parallax smartphone mockup
+- **Streaming platform links**: YouTube Music, Spotify, Amazon Music, Tidal, SoundCloud, and Apple Music
+- **Email capture** for upcoming merch
+- **Contact form** for collaboration inquiries
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+---
+
+---
+
+## ⚙️ Getting Started Locally
+
+### Prerequisites
+
+Ensure you have **Node.js** and **npm** installed (Node.js 16+ recommended). You can use [`nvm`](https://github.com/nvm-sh/nvm) for easy Node.js version management.
+
+### Steps
+
+```bash
+# Step 1: Clone the repository
+git clone https://github.com/alifsuryadi/unpheric
+
+# Step 2: Navigate into the project directory
+cd unpheric
+
+# Step 3: Install dependencies
+npm install
+
+# Step 4: Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+> Visit `http://localhost:3000` to view the site locally.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📩 Contributing / Feedback
 
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/9416ffba-2a30-469c-aa09-a2fc8fcb9bca) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+For improvements, bug reports, or feature requests, feel free to open a pull request or create an issue.
