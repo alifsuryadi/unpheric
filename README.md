@@ -13,12 +13,6 @@ Welcome to the official source code of **Unpheric's** immersive and modern perso
 
 ---
 
-## 🚀 Project Info
-
-- **Live URL**: [https://lovable.dev/projects/9416ffba-2a30-469c-aa09-a2fc8fcb9bca](https://lovable.dev/projects/9416ffba-2a30-469c-aa09-a2fc8fcb9bca)
-
----
-
 ## 🛠️ Tech Stack
 
 This project is built using the following technologies:
