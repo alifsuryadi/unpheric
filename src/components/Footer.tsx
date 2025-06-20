@@ -6,6 +6,7 @@ import { Instagram, Youtube, Mail } from 'lucide-react';
 const Footer = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+  const isCollabPage = location.pathname === '/collab';
   
   const socialLinks = [
     {
@@ -62,8 +63,8 @@ const Footer = () => {
           </div>
         )}
 
-        {/* Email Contact Section - Only on non-home pages */}
-        {!isHomePage && (
+        {/* Email Contact Section - Only on collab page */}
+        {isCollabPage && (
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-gradient mb-6">
               Contact Unpheric
