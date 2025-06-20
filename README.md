@@ -62,7 +62,7 @@ npm install
 npm run dev
 ```
 
-> Visit `http://localhost:3000` to view the site locally.
+> Visit `http://localhost:8080` to view the site locally.
 
 ## 📩 Contributing / Feedback
 
