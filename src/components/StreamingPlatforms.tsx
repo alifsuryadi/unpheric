@@ -1,44 +1,43 @@
-
-import React from 'react';
+import React from "react";
 
 const StreamingPlatforms = () => {
   const platforms = [
     {
-      name: 'Spotify',
-      logo: '🎵',
-      url: 'https://open.spotify.com/artist/unpheric',
-      color: '#1DB954'
+      name: "Spotify",
+      logo: "🎵",
+      url: "https://open.spotify.com/artist/1gfwehyaOnHFFbuVGKrszq",
+      color: "#1DB954",
     },
     {
-      name: 'Apple Music',
-      logo: '🍎',
-      url: 'https://music.apple.com/artist/unpheric',
-      color: '#FA243C'
+      name: "Apple Music",
+      logo: "🍎",
+      url: "https://music.apple.com/id/artist/unpheric/1787597554",
+      color: "#FA243C",
     },
     {
-      name: 'YouTube Music',
-      logo: '📺',
-      url: 'https://music.youtube.com/channel/unpheric',
-      color: '#FF0000'
+      name: "YouTube Music",
+      logo: "📺",
+      url: "https://music.youtube.com/channel/UCwi0xjIF9gyZD5KYctESW7Q",
+      color: "#FF0000",
     },
     {
-      name: 'Amazon Music',
-      logo: '📦',
-      url: 'https://music.amazon.com/artists/unpheric',
-      color: '#FF9900'
+      name: "Amazon Music",
+      logo: "📦",
+      url: "https://www.amazon.com/music/player/artists/B0DRPVZCPZ/unpheric",
+      color: "#FF9900",
     },
     {
-      name: 'Tidal',
-      logo: '🌊',
-      url: 'https://tidal.com/browse/artist/unpheric',
-      color: '#00FFFF'
+      name: "Tidal",
+      logo: "🌊",
+      url: "https://tidal.com/artist/52866092",
+      color: "#00FFFF",
     },
     {
-      name: 'SoundCloud',
-      logo: '☁️',
-      url: 'https://soundcloud.com/unpheric',
-      color: '#FF3300'
-    }
+      name: "SoundCloud",
+      logo: "☁️",
+      url: "https://soundcloud.com/unpheric",
+      color: "#FF3300",
+    },
   ];
 
   return (
@@ -62,7 +61,7 @@ const StreamingPlatforms = () => {
               rel="noopener noreferrer"
               className="group flex flex-col items-center p-6 bg-gradient-to-br from-gray-900/50 to-black/50 rounded-xl border border-gray-800 hover:border-unpheric-purple transition-all duration-300 glow-purple-hover"
               style={{
-                animationDelay: `${index * 0.1}s`
+                animationDelay: `${index * 0.1}s`,
               }}
             >
               <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">

@@ -1,51 +1,59 @@
-
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { gsap } from 'gsap';
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { gsap } from "gsap";
+import fallenAngelCover from "../assets/images/album/fallen-angel.jpg";
 
 const Album = () => {
   const albums = [
     {
-      id: 'fallen-angel',
-      title: 'Fallen Angel',
-      cover: '👼',
-      available: true
+      id: "fallen-angel",
+      title: "Fallen Angel",
+      cover: fallenAngelCover,
+      available: true,
     },
     {
-      id: 'neon-dreams',
-      title: 'Neon Dreams',
-      cover: '💫',
-      available: false
+      id: "neon-dreams",
+      title: "Neon Dreams",
+      cover: "💫",
+      available: false,
     },
     {
-      id: 'void-echoes',
-      title: 'Void Echoes',
-      cover: '🌌',
-      available: false
-    }
+      id: "void-echoes",
+      title: "Void Echoes",
+      cover: "🌌",
+      available: false,
+    },
   ];
 
   useEffect(() => {
-    gsap.fromTo('.album-grid', {
-      opacity: 0,
-      y: 50
-    }, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      delay: 0.3
-    });
+    gsap.fromTo(
+      ".album-grid",
+      {
+        opacity: 0,
+        y: 50,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        delay: 0.3,
+      }
+    );
 
-    gsap.fromTo('.album-card', {
-      opacity: 0,
-      scale: 0.9
-    }, {
-      opacity: 1,
-      scale: 1,
-      duration: 0.8,
-      stagger: 0.2,
-      delay: 0.6
-    });
+    gsap.fromTo(
+      ".album-card",
+      {
+        opacity: 0,
+        scale: 0.9,
+      },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        stagger: 0.2,
+        delay: 0.6,
+      }
+    );
   }, []);
 
   return (
@@ -72,7 +80,11 @@ const Album = () => {
                 >
                   <div className="aspect-square p-8 flex flex-col justify-center items-center">
                     <div className="text-8xl mb-6 group-hover:scale-110 transition-transform duration-500">
-                      {album.cover}
+                      <img
+                        src={album.cover}
+                        alt={`${album.title} Album Cover`}
+                        className="w-full h-full object-cover rounded-xl shadow-2xl"
+                      />
                     </div>
                     <h3 className="text-2xl font-bold text-center group-hover:text-unpheric-purple transition-colors duration-300">
                       {album.title}
@@ -89,7 +101,9 @@ const Album = () => {
                     <h3 className="text-2xl font-bold text-center text-unpheric-gray">
                       {album.title}
                     </h3>
-                    <p className="text-sm text-unpheric-gray mt-2">Coming Soon</p>
+                    <p className="text-sm text-unpheric-gray mt-2">
+                      Coming Soon
+                    </p>
                   </div>
                 </div>
               )}
