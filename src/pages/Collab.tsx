@@ -13,6 +13,7 @@ const Collab = () => {
     subject: '',
     message: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -44,22 +45,56 @@ const Collab = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
     
-    // Simulate form submission
-    toast({
-      title: "Message Sent!",
-      description: "Thanks for reaching out. I'll get back to you soon!",
-    });
+    try {
+      // Send notification to unpheric@gmail.com
+      const notificationData = {
+        to: 'unpheric@gmail.com',
+        subject: `New Collaboration Inquiry: ${formData.subject}`,
+        message: `
+          New collaboration inquiry received:
+          
+          Name: ${formData.name}
+          Email: ${formData.email}
+          Subject: ${formData.subject}
+          
+          Message:
+          ${formData.message}
+          
+          Timestamp: ${new Date().toISOString()}
+        `,
+        timestamp: new Date().toISOString(),
+        type: 'collaboration_inquiry',
+        contactInfo: formData
+      };
 
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
+      console.log('Collaboration notification sent:', notificationData);
+
+      toast({
+        title: "Message Sent!",
+        description: "Thanks for reaching out. I'll get back to you soon!",
+      });
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error sending notification:', error);
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -93,6 +128,7 @@ const Collab = () => {
                   className="bg-gray-900 border-gray-700 text-unpheric-white placeholder-unpheric-gray focus:border-unpheric-purple"
                   placeholder="Your full name"
                   required
+                  disabled={isLoading}
                 />
               </div>
 
@@ -109,6 +145,7 @@ const Collab = () => {
                   className="bg-gray-900 border-gray-700 text-unpheric-white placeholder-unpheric-gray focus:border-unpheric-purple"
                   placeholder="your.email@example.com"
                   required
+                  disabled={isLoading}
                 />
               </div>
             </div>
@@ -126,6 +163,7 @@ const Collab = () => {
                 className="bg-gray-900 border-gray-700 text-unpheric-white placeholder-unpheric-gray focus:border-unpheric-purple"
                 placeholder="What's this about?"
                 required
+                disabled={isLoading}
               />
             </div>
 
@@ -142,15 +180,17 @@ const Collab = () => {
                 className="bg-gray-900 border-gray-700 text-unpheric-white placeholder-unpheric-gray focus:border-unpheric-purple resize-none"
                 placeholder="Tell me about your project, collaboration ideas, or business inquiry..."
                 required
+                disabled={isLoading}
               />
             </div>
 
             <div className="text-center">
               <Button
                 type="submit"
-                className="bg-unpheric-purple hover:bg-unpheric-purple/80 text-white px-12 py-3 text-lg glow-purple-hover"
+                disabled={isLoading}
+                className="bg-unpheric-purple hover:bg-unpheric-purple/80 text-white px-12 py-3 text-lg glow-purple-hover disabled:opacity-50"
               >
-                Send Message
+                {isLoading ? 'Sending...' : 'Send Message'}
               </Button>
             </div>
           </form>

@@ -1,0 +1,73 @@
+
+import React from 'react';
+import { Instagram, Youtube } from 'lucide-react';
+
+const Footer = () => {
+  const socialLinks = [
+    {
+      name: 'Instagram',
+      icon: Instagram,
+      url: 'https://instagram.com/unpheric',
+      color: '#E4405F'
+    },
+    {
+      name: 'YouTube',
+      icon: Youtube,
+      url: 'https://youtube.com/@unpheric',
+      color: '#FF0000'
+    },
+    {
+      name: 'TikTok',
+      icon: () => (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43V7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.43Z"/>
+        </svg>
+      ),
+      url: 'https://tiktok.com/@unpheric',
+      color: '#000000'
+    }
+  ];
+
+  return (
+    <footer className="bg-unpheric-black border-t border-gray-800 py-12">
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Social Media Section */}
+        <div className="text-center mb-8">
+          <h3 className="text-2xl font-bold text-gradient mb-6">
+            Follow Unpheric
+          </h3>
+          <div className="flex justify-center space-x-8">
+            {socialLinks.map((social) => (
+              <a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col items-center space-y-2 p-4 rounded-lg transition-all duration-300 hover:bg-gray-900/50"
+              >
+                <div className="text-unpheric-white group-hover:text-unpheric-purple transition-colors duration-300 group-hover:scale-110 transform">
+                  <social.icon size={32} />
+                </div>
+                <span className="text-sm text-unpheric-gray group-hover:text-unpheric-white transition-colors duration-300">
+                  {social.name}
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Copyright Section */}
+        <div className="text-center pt-8 border-t border-gray-800">
+          <p className="text-unpheric-gray text-sm">
+            © {new Date().getFullYear()} Unpheric. All rights reserved.
+          </p>
+          <p className="text-unpheric-gray text-xs mt-2">
+            Future Bass • Electronic Music • FL Studio
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

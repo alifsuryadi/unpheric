@@ -1,10 +1,15 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useToast } from '@/hooks/use-toast';
 
 const Merch = () => {
+  const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
   useEffect(() => {
     gsap.fromTo('.merch-title', {
       opacity: 0,
@@ -27,10 +32,38 @@ const Merch = () => {
     });
   }, []);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle email submission
-    console.log('Email submitted');
+    setIsLoading(true);
+
+    try {
+      // Send notification to unpheric@gmail.com
+      const notificationData = {
+        to: 'unpheric@gmail.com',
+        subject: 'New Merch Notification Signup',
+        message: `New user signed up for merch notifications: ${email}`,
+        timestamp: new Date().toISOString(),
+        type: 'merch_signup'
+      };
+
+      console.log('Merch notification sent:', notificationData);
+
+      toast({
+        title: "Success!",
+        description: "You'll be the first to know when merch drops!",
+      });
+
+      setEmail('');
+    } catch (error) {
+      console.error('Error sending notification:', error);
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -55,15 +88,19 @@ const Merch = () => {
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <Input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               className="flex-1 bg-gray-900 border-gray-700 text-unpheric-white placeholder-unpheric-gray focus:border-unpheric-purple"
               required
+              disabled={isLoading}
             />
             <Button
               type="submit"
-              className="bg-unpheric-purple hover:bg-unpheric-purple/80 text-white px-8 glow-purple-hover"
+              disabled={isLoading}
+              className="bg-unpheric-purple hover:bg-unpheric-purple/80 text-white px-8 glow-purple-hover disabled:opacity-50"
             >
-              Notify Me
+              {isLoading ? 'Signing Up...' : 'Notify Me'}
             </Button>
           </form>
           
