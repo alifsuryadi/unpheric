@@ -1,8 +1,12 @@
 
 import React from 'react';
-import { Instagram, Youtube } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
+import { Instagram, Youtube, Mail } from 'lucide-react';
 
 const Footer = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  
   const socialLinks = [
     {
       name: 'Instagram',
@@ -31,30 +35,54 @@ const Footer = () => {
   return (
     <footer className="bg-unpheric-black border-t border-gray-800 py-12">
       <div className="max-w-7xl mx-auto px-4">
-        {/* Social Media Section */}
-        <div className="text-center mb-8">
-          <h3 className="text-2xl font-bold text-gradient mb-6">
-            Follow Unpheric
-          </h3>
-          <div className="flex justify-center space-x-8">
-            {socialLinks.map((social) => (
+        {/* Conditional Social Media Section - Only on Home Page */}
+        {isHomePage && (
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-bold text-gradient mb-6">
+              Follow Unpheric
+            </h3>
+            <div className="flex justify-center space-x-8">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col items-center space-y-2 p-4 rounded-lg transition-all duration-300 hover:bg-gray-900/50"
+                >
+                  <div className="text-unpheric-white group-hover:text-unpheric-purple transition-colors duration-300 group-hover:scale-110 transform">
+                    <social.icon size={32} />
+                  </div>
+                  <span className="text-sm text-unpheric-gray group-hover:text-unpheric-white transition-colors duration-300">
+                    {social.name}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Email Contact Section - Only on non-home pages */}
+        {!isHomePage && (
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-bold text-gradient mb-6">
+              Contact Unpheric
+            </h3>
+            <div className="flex justify-center">
               <a
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col items-center space-y-2 p-4 rounded-lg transition-all duration-300 hover:bg-gray-900/50"
+                href="mailto:unpheric@gmail.com"
+                className="group flex items-center space-x-3 p-4 rounded-lg transition-all duration-300 hover:bg-gray-900/50"
               >
                 <div className="text-unpheric-white group-hover:text-unpheric-purple transition-colors duration-300 group-hover:scale-110 transform">
-                  <social.icon size={32} />
+                  <Mail size={24} />
                 </div>
-                <span className="text-sm text-unpheric-gray group-hover:text-unpheric-white transition-colors duration-300">
-                  {social.name}
+                <span className="text-lg text-unpheric-white group-hover:text-unpheric-purple transition-colors duration-300">
+                  unpheric@gmail.com
                 </span>
               </a>
-            ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Copyright Section */}
         <div className="text-center pt-8 border-t border-gray-800">
