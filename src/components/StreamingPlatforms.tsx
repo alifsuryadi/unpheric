@@ -12,7 +12,6 @@ import {
 } from "react-icons/si";
 
 const StreamingPlatforms = () => {
-  // 2. Ganti properti logo dari emoji menjadi komponen ikon
   const platforms = [
     {
       name: "Spotify",
@@ -52,14 +51,75 @@ const StreamingPlatforms = () => {
     },
   ];
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate title
+      gsap.fromTo(titleRef.current, {
+        opacity: 0,
+        y: 50
+      }, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse",
+        }
+      });
+
+      // Animate description
+      gsap.fromTo(descriptionRef.current, {
+        opacity: 0,
+        y: 30
+      }, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        delay: 0.2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse",
+        }
+      });
+
+      // Animate platform cards
+      gsap.fromTo(".platform-card", {
+        opacity: 0,
+        y: 40,
+        scale: 0.9
+      }, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 70%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse",
+        }
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-20 px-4">
+    <section ref={sectionRef} className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">
+          <h2 ref={titleRef} className="text-4xl md:text-5xl font-bold mb-4 text-gradient">
             Listen Now
           </h2>
-          <p className="text-unpheric-gray text-lg">
+          <p ref={descriptionRef} className="text-unpheric-gray text-lg">
             Stream Unpheric's music on your favorite platform
           </p>
         </div>

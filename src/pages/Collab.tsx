@@ -1,95 +1,88 @@
+// src/pages/Collab.tsx
 
-import React, { useEffect, useState } from 'react';
-import { gsap } from 'gsap';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
+import React, { useEffect, useState } from "react";
+import { gsap } from "gsap";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 
 const Collab = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
-    gsap.fromTo('.collab-header', {
-      opacity: 0,
-      y: -50
-    }, {
-      opacity: 1,
-      y: 0,
-      duration: 1.2,
-      ease: 'power3.out'
-    });
-
-    gsap.fromTo('.collab-form', {
-      opacity: 0,
-      y: 50
-    }, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      delay: 0.3
-    });
+    gsap.fromTo(
+      ".collab-header",
+      { opacity: 0, y: -50 },
+      { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }
+    );
+    gsap.fromTo(
+      ".collab-form",
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0, duration: 1, delay: 0.3 }
+    );
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
+  // --- Fungsi handleSubmit diperbarui untuk Formspree ---
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
+    const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
+
     try {
-      // Send notification to unpheric@gmail.com
-      const notificationData = {
-        to: 'unpheric@gmail.com',
-        subject: `New Collaboration Inquiry: ${formData.subject}`,
-        message: `
-          New collaboration inquiry received:
-          
-          Name: ${formData.name}
-          Email: ${formData.email}
-          Subject: ${formData.subject}
-          
-          Message:
-          ${formData.message}
-          
-          Timestamp: ${new Date().toISOString()}
-        `,
-        timestamp: new Date().toISOString(),
-        type: 'collaboration_inquiry',
-        contactInfo: formData
-      };
-
-      console.log('Collaboration notification sent:', notificationData);
-
-      toast({
-        title: "Message Sent!",
-        description: "Thanks for reaching out. I'll get back to you soon!",
+      const response = await fetch(formspreeEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formData),
       });
 
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-    } catch (error) {
-      console.error('Error sending notification:', error);
+      if (response.ok) {
+        // Sukses
+        toast({
+          title: "Message Sent!",
+          description: "Thanks for reaching out. I'll get back to you soon!",
+        });
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        // Gagal, coba dapatkan pesan error dari Formspree
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Something went wrong");
+      }
+    } catch (error: unknown) {
+      console.error("Error sending message:", error);
+      let errorMessage = "Failed to send the message. Please try again.";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
@@ -106,17 +99,22 @@ const Collab = () => {
             Let's Create Together
           </h1>
           <p className="text-unpheric-gray text-xl max-w-2xl mx-auto">
-            Open to musical collaborations, business inquiries, and creative partnerships. 
-            Let's bring your vision to life with the power of future bass.
+            Open to musical collaborations, business inquiries, and creative
+            partnerships. Let's bring your vision to life with the power of
+            future bass.
           </p>
         </div>
 
         {/* Contact Form */}
         <div className="collab-form">
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Input fields tetap sama, tidak ada perubahan di sini */}
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="name" className="block text-unpheric-white text-sm font-medium mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-unpheric-white text-sm font-medium mb-2"
+                >
                   Name *
                 </label>
                 <Input
@@ -131,9 +129,11 @@ const Collab = () => {
                   disabled={isLoading}
                 />
               </div>
-
               <div>
-                <label htmlFor="email" className="block text-unpheric-white text-sm font-medium mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-unpheric-white text-sm font-medium mb-2"
+                >
                   Email *
                 </label>
                 <Input
@@ -149,9 +149,11 @@ const Collab = () => {
                 />
               </div>
             </div>
-
             <div>
-              <label htmlFor="subject" className="block text-unpheric-white text-sm font-medium mb-2">
+              <label
+                htmlFor="subject"
+                className="block text-unpheric-white text-sm font-medium mb-2"
+              >
                 Subject *
               </label>
               <Input
@@ -166,9 +168,11 @@ const Collab = () => {
                 disabled={isLoading}
               />
             </div>
-
             <div>
-              <label htmlFor="message" className="block text-unpheric-white text-sm font-medium mb-2">
+              <label
+                htmlFor="message"
+                className="block text-unpheric-white text-sm font-medium mb-2"
+              >
                 Message *
               </label>
               <Textarea
@@ -183,14 +187,13 @@ const Collab = () => {
                 disabled={isLoading}
               />
             </div>
-
             <div className="text-center">
               <Button
                 type="submit"
                 disabled={isLoading}
                 className="bg-unpheric-purple hover:bg-unpheric-purple/80 text-white px-12 py-3 text-lg glow-purple-hover disabled:opacity-50"
               >
-                {isLoading ? 'Sending...' : 'Send Message'}
+                {isLoading ? "Sending..." : "Send Message"}
               </Button>
             </div>
           </form>

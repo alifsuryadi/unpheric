@@ -13,12 +13,6 @@ Welcome to the official source code of **Unpheric's** immersive and modern perso
 
 ---
 
-## 🚀 Project Info
-
-- **Live URL**: [https://lovable.dev/projects/9416ffba-2a30-469c-aa09-a2fc8fcb9bca](https://lovable.dev/projects/9416ffba-2a30-469c-aa09-a2fc8fcb9bca)
-
----
-
 ## 🛠️ Tech Stack
 
 This project is built using the following technologies:
@@ -54,21 +48,46 @@ Ensure you have **Node.js** and **npm** installed (Node.js 16+ recommended). You
 
 ### Steps
 
+#### Step 1: Clone the repository
+
 ```bash
-# Step 1: Clone the repository
 git clone https://github.com/alifsuryadi/unpheric
+```
 
-# Step 2: Navigate into the project directory
+#### Step 2: Navigate into the project directory
+
+```bash
 cd unpheric
+```
 
-# Step 3: Install dependencies
+#### Step 3: Install dependencies
+
+```bash
 npm install
+```
 
-# Step 4: Start the development server
+#### Step 4: Set up Environment Variables
+
+> Copy the example environment file to a local environment file
+
+```bash
+cp .env.example .env.local
+```
+
+> After running the command above, follow these manual steps:
+
+> 1. Open your browser and sign up or log in at `Formspree.io`.
+> 2. Create a new form to get your unique Endpoint URL (e.g., `https://formspree.io/f/xxxxxxxx`).
+> 3. Open the newly created `.env.local` file in your project.
+> 4. Replace the value of `VITE_FORMSPREE_ENDPOINT` with the Endpoint URL you got from Formspree.
+
+#### Step 5: Start the development server
+
+```bash
 npm run dev
 ```
 
-> Visit `http://localhost:3000` to view the site locally.
+> Visit `http://localhost:8080` to view the site locally.
 
 ## 📩 Contributing / Feedback
 
