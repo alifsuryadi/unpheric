@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { Play, Heart, MoreHorizontal } from "lucide-react";
+import { SiSpotify } from "react-icons/si";
+import fallenAngelCover from "../assets/images/album/fallen-angel.jpg";
 
 const SpotifyMockup = () => {
   const phoneRef = useRef<HTMLDivElement>(null);
@@ -54,7 +56,12 @@ const SpotifyMockup = () => {
           <div className="px-4 py-2">
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
-              <div className="w-6 h-6 rounded-full bg-unpheric-purple"></div>
+              <div className="w-6 h-6 rounded-full bg-unpheric-purple">
+                <SiSpotify
+                  className="w-full h-full rounded-full object-cover text-white"
+                  aria-label="Spotify Logo"
+                />
+              </div>
               <span className="text-white font-bold">Now Playing</span>
               <MoreHorizontal className="text-white w-6 h-6" />
             </div>
@@ -62,7 +69,13 @@ const SpotifyMockup = () => {
             {/* Album Art */}
             <div className="w-full aspect-square bg-gradient-to-br from-purple-600 via-purple-900 to-black rounded-lg mb-6 flex items-center justify-center">
               <div className="text-center">
-                <div className="w-20 h-20 bg-unpheric-purple rounded-full mb-4 mx-auto opacity-80"></div>
+                <div className="w-20 h-20 bg-unpheric-purple rounded-full mb-4 mx-auto opacity-80">
+                  <img
+                    src={fallenAngelCover}
+                    alt="Album Art"
+                    className="w-full h-full rounded-full object-cover"
+                  />
+                </div>
                 <div className="text-white text-lg font-bold">Fallen Angel</div>
                 <div className="text-gray-400 text-sm">UNPHERIC</div>
               </div>
@@ -88,9 +101,14 @@ const SpotifyMockup = () => {
             {/* Controls */}
             <div className="flex items-center justify-center space-x-8 mb-4">
               <Heart className="text-unpheric-purple w-6 h-6" />
-              <button className="w-12 h-12 bg-unpheric-purple rounded-full flex items-center justify-center">
+              <a
+                className="w-12 h-12 bg-unpheric-purple rounded-full flex items-center justify-center"
+                href="https://open.spotify.com/artist/1gfwehyaOnHFFbuVGKrszq"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Play className="text-white w-6 h-6 ml-1" fill="white" />
-              </button>
+              </a>
               <div className="w-6 h-6 bg-gray-600 rounded"></div>
             </div>
           </div>
