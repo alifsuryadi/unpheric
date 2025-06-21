@@ -4,6 +4,15 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ExternalLink } from "lucide-react";
 
+import {
+  SiSpotify,
+  SiApplemusic,
+  SiYoutube,
+  SiAmazon,
+  SiTidal,
+  SiSoundcloud,
+} from "react-icons/si";
+
 import fallenAngelCover from "../assets/images/album/fallen-angel.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -18,31 +27,37 @@ const AlbumDetail = () => {
       name: "Spotify",
       url: "https://open.spotify.com/album/0ji0ydzv8F1rJCXeH6we2X?si=5yqgS9q5R2WW-PYil1_QeQ&nd=1&dlsi=f1179ffa5e4c404b",
       color: "#1DB954",
+      icon: SiSpotify,
     },
     {
       name: "Apple Music",
       url: "https://music.apple.com/id/album/fallen-angel-single/1814835031",
       color: "#FA243C",
+      icon: SiApplemusic,
     },
     {
       name: "YouTube Music",
       url: "https://music.youtube.com/playlist?list=OLAK5uy_lVgbgwiKB53mVbzpVyB7XjzoCQAMI0lqU",
       color: "#FF0000",
+      icon: SiYoutube,
     },
     {
       name: "Amazon Music",
       url: "https://www.amazon.com/dp/B0F94CRF9X?tag=fndcmpgns-20",
       color: "#FF9900",
+      icon: SiAmazon,
     },
     {
       name: "Tidal",
       url: "https://tidal.com/album/436386285",
       color: "#00FFFF",
+      icon: SiTidal,
     },
     {
       name: "SoundCloud",
       url: "https://soundcloud.com/unpheric/sets/fallen-angel?si=b43f7fcd83984f26b364ea4843f7c3b0&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing",
       color: "#FF3300",
+      icon: SiSoundcloud,
     },
   ];
 
@@ -185,20 +200,25 @@ const AlbumDetail = () => {
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {streamingLinks.map((platform) => (
-              <a
-                key={platform.name}
-                href={platform.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="streaming-button group flex flex-col items-center p-6 bg-gradient-to-br from-gray-900/50 to-black/50 rounded-xl border border-gray-800 hover:border-unpheric-purple transition-all duration-300 glow-purple-hover"
-              >
-                <ExternalLink className="w-8 h-8 mb-3 text-unpheric-purple group-hover:scale-110 transition-transform duration-300" />
-                <span className="text-sm text-center text-unpheric-white group-hover:text-unpheric-purple transition-colors duration-300">
-                  {platform.name}
-                </span>
-              </a>
-            ))}
+            {streamingLinks.map((platform) => {
+              // 3. Simpan komponen ikon ke dalam variabel
+              const IconComponent = platform.icon;
+              return (
+                <a
+                  key={platform.name}
+                  href={platform.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="streaming-button group flex flex-col items-center p-6 bg-gradient-to-br from-gray-900/50 to-black/50 rounded-xl border border-gray-800 hover:border-unpheric-purple transition-all duration-300 glow-purple-hover"
+                >
+                  {/* 4. Ganti ikon ExternalLink dengan ikon platform yang sesuai */}
+                  <IconComponent className="w-8 h-8 mb-3 text-unpheric-gray group-hover:text-white transition-colors duration-300" />
+                  <span className="text-sm text-center text-unpheric-white group-hover:text-unpheric-purple transition-colors duration-300">
+                    {platform.name}
+                  </span>
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>
