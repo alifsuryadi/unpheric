@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
-import fallenAngelCover from "../assets/images/album/fallen-angel.jpg";
+import fallenAngelCover from "../assets/images/album/fallen-angel-v2.jpg";
 
 const Album = () => {
   const albums = [
