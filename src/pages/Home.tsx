@@ -9,167 +9,181 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
   const heroRef = useRef<HTMLDivElement>(null);
-  const bioLinesRef = useRef<HTMLDivElement>(null);
+  const heroBgRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
-
-  const bioLines = [
-    "Gain creativity with FL Studio",
-    "Dive into the world of future bass and violin 🎶",
-    "Just love music whatever the genre 🎹📚",
-    "Let's make some music! 🎧",
-  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero section animations
+      /* ===== HERO FADE ANIMATION ===== */
+
       gsap.from(".hero-title", {
-        duration: 1.2,
+        opacity: 0,
         y: 50,
-        opacity: 0,
-        ease: "power3.out",
-        delay: 0.3,
+        duration: 1.6,
+        ease: "power4.out",
       });
 
-      // Bio lines animation
-      gsap.from(".bio-line", {
-        duration: 0.8,
+      gsap.from(".hero-sub", {
+        opacity: 0,
         y: 30,
-        opacity: 0,
-        stagger: 0.2,
-        ease: "power2.out",
-        delay: 0.8,
+        duration: 1.4,
+        delay: 0.6,
+        ease: "power3.out",
       });
 
-      // About section scroll animation
-      gsap.fromTo(
-        ".about-photo",
-        {
-          x: -100,
-          opacity: 0,
-        },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 1,
-          scrollTrigger: {
-            trigger: aboutRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
+      gsap.from(".hero-btn", {
+        opacity: 0,
+        y: 20,
+        duration: 1,
+        delay: 1,
+        ease: "power3.out",
+      });
 
-      gsap.fromTo(
-        ".about-text",
-        {
-          x: 100,
-          opacity: 0,
-        },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 1,
-          scrollTrigger: {
-            trigger: aboutRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
+      gsap.from(".phone-container", {
+        opacity: 0,
+        x: 80,
+        duration: 1.8,
+        delay: 0.8,
+        ease: "power4.out",
+      });
 
-      // Floating animation for the phone
+      /* ===== FLOATING PHONE ===== */
+
       gsap.to(".phone-container", {
-        y: -10,
-        duration: 2,
+        y: -15,
+        duration: 3,
         ease: "power1.inOut",
         yoyo: true,
         repeat: -1,
       });
+
+      /* ===== SUBTLE PARALLAX BACKGROUND ===== */
+
+      if (heroBgRef.current) {
+        gsap.to(heroBgRef.current, {
+          yPercent: 15,
+          ease: "none",
+          scrollTrigger: {
+            trigger: heroBgRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      }
+
+      /* ===== ABOUT SCROLL REVEAL ===== */
+
+      gsap.fromTo(
+        ".about-content",
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.4,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: aboutRef.current,
+            start: "top 80%",
+          },
+        }
+      );
     }, heroRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <div ref={heroRef} className="min-h-screen">
-      {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-radial from-unpheric-purple/20 via-transparent to-transparent"></div>
+    <div ref={heroRef} className="bg-[#050505] text-white overflow-hidden">
 
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          {/* Left Side - Bio Text */}
-          <div ref={bioLinesRef} className="space-y-6">
-            <h1 className="hero-title text-5xl md:text-7xl font-bold text-gradient mb-8">
+      {/* ================= HERO SECTION ================= */}
+      <section className="relative min-h-screen flex items-center justify-center px-6 pt-24 md:pt-0">
+
+
+        {/* Background Glow + Parallax */}
+        <div ref={heroBgRef} className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(109,40,217,0.25),transparent_60%)]"></div>
+          <div className="absolute inset-0 bg-black/70"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+
+          {/* LEFT SIDE - TEXT */}
+          <div className="space-y-8 text-center md:text-left md:ml-20">
+            <h1 className="hero-title text-4xl sm:text-5xl md:text-8xl font-bold tracking-[0.18em] md:tracking-[0.25em] leading-tight">
               UNPHERIC
             </h1>
-            <div className="space-y-4">
-              {bioLines.map((line, index) => (
-                <p
-                  key={index}
-                  className="bio-line text-xl md:text-2xl text-unpheric-white font-light"
-                >
-                  {line}
-                </p>
-              ))}
+
+            <p className="hero-sub text-xl md:text-2xl text-gray-400 font-light max-w-lg leading-relaxed mx-auto md:mx-0">
+              Emotional Bass Storytelling Through Future Soundscapes.
+            </p>
+
+            <button className="hero-btn px-8 py-4 border border-purple-600 text-purple-400 hover:bg-purple-600 hover:text-white transition-all duration-500 rounded-full tracking-widest">
+              LISTEN NOW
+            </button>
+          </div>
+
+          {/* RIGHT SIDE - SPOTIFY MOCKUP */}
+          <div className="phone-container flex justify-center relative">
+            <div className="absolute w-72 h-72 bg-purple-700/30 blur-3xl rounded-full animate-pulse"></div>
+            <div className="relative z-10 transition-transform duration-700 hover:scale-105">
+              <SpotifyMockup />
             </div>
           </div>
 
-          {/* Right Side - Spotify Mockup */}
-          <div className="phone-container flex justify-center">
-            <SpotifyMockup />
-          </div>
         </div>
       </section>
 
-      {/* About Unpheric Section */}
-      <section ref={aboutRef} className="py-20 px-4">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          {/* Photo */}
-          <div className="about-photo">
-            <div className="relative">
-              <div className="w-full h-96 bg-gradient-to-br from-unpheric-purple/30 to-gray-900 rounded-2xl flex items-center justify-center">
-                <div className="text-center">
-                  {/* <div className="w-72 h-72 bg-unpheric-purple rounded-full mx-auto mb-4 opacity-80"></div> */}
-                  <img
-                    src={UnphericPhoto}
-                    alt="Artist Photo"
-                    className="w-72 h-72 rounded-full mx-auto mb-4 object-cover"
-                  />
-                  <p className="text-unpheric-gray text-xl">Unpheric - Ryan Goman</p>
-                </div>
+      {/* ================= ABOUT SECTION ================= */}
+      <section ref={aboutRef} className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+
+          <div className="about-content bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10 md:p-16">
+
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+
+              {/* PHOTO */}
+              <div className="flex justify-center">
+                <img
+                  src={UnphericPhoto}
+                  alt="Unpheric - Ryan Goman"
+                  className="w-72 h-72 rounded-full object-cover shadow-2xl"
+                />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-unpheric-purple/20 to-transparent rounded-2xl"></div>
+
+              {/* TEXT */}
+              <div className="space-y-6 text-gray-300 leading-relaxed text-lg">
+                <h2 className="text-4xl md:text-5xl font-bold text-white">
+                  About Unpheric
+                </h2>
+
+                <p>
+                  Unpheric, born Ryan Goman in Indonesia, is an electronic music
+                  producer blending future bass with cinematic violin elements.
+                  Since 2018, he has crafted emotional soundscapes that merge
+                  orchestral depth with powerful bass textures.
+                </p>
+
+                <p>
+                  Officially debuting in 2025 with “Dimensional Tears” and
+                  “Last Hope,” followed by the album “Fallen Angel,” Unpheric
+                  builds immersive sonic worlds driven by emotion and storytelling.
+                </p>
+
+                <p className="italic text-purple-400">
+                  “I don't just produce music. I build emotional dimensions.”
+                </p>
+              </div>
+
             </div>
           </div>
 
-          {/* Text */}
-          <div className="about-text space-y-6">
-            <h2 className="text-4xl md:text-5xl font-bold text-gradient">
-              About Unpheric
-            </h2>
-            <div className="space-y-4 text-unpheric-gray text-lg leading-relaxed">
-              <p>
-                Unpheric, born Ryan Goman in Indonesia, is an electronic music
-                producer blending future bass with cinematic violin elements. 
-                Since starting his journey in 2018, he has developed a signature
-                sound that combines emotional melodies, organic strings, and powerful bass.
-              </p>
-              <p>
-                He officially debuted in 2025 with the singles “Dimensional Tears”
-                and “Last Hope,” followed by his album “Fallen Angel” in September 2025
-                marking the beginning of a project focused on emotional storytelling
-                through bass music.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* Streaming Platforms Section */}
+      {/* ================= STREAMING ================= */}
       <StreamingPlatforms />
+
     </div>
   );
 };
