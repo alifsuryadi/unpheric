@@ -8,6 +8,7 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Album from "./pages/Album";
 import AlbumDetail from "./pages/AlbumDetail";
+import Single from "./pages/Single";
 import Merch from "./pages/Merch";
 import Collab from "./pages/Collab";
 import NotFound from "./pages/NotFound";
@@ -25,6 +26,7 @@ const App = () => (
             <Route path="/" element={<Home />} />
             <Route path="/album" element={<Album />} />
             <Route path="/album/:id" element={<AlbumDetail />} />
+            <Route path="/single" element={<Single />} />
             <Route path="/merch" element={<Merch />} />
             <Route path="/collab" element={<Collab />} />
             <Route path="*" element={<NotFound />} />

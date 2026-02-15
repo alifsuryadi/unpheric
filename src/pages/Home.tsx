@@ -14,8 +14,8 @@ const Home = () => {
 
   const bioLines = [
     "Gain creativity with FL Studio",
-    "Dive into the world of future bass 🎶",
-    "6 years of learning 🎹📚",
+    "Dive into the world of future bass and violin 🎶",
+    "Just love music whatever the genre 🎹📚",
     "Let's make some music! 🎧",
   ];
 
@@ -132,13 +132,13 @@ const Home = () => {
             <div className="relative">
               <div className="w-full h-96 bg-gradient-to-br from-unpheric-purple/30 to-gray-900 rounded-2xl flex items-center justify-center">
                 <div className="text-center">
-                  {/* <div className="w-32 h-32 bg-unpheric-purple rounded-full mx-auto mb-4 opacity-80"></div> */}
+                  {/* <div className="w-72 h-72 bg-unpheric-purple rounded-full mx-auto mb-4 opacity-80"></div> */}
                   <img
                     src={UnphericPhoto}
                     alt="Artist Photo"
-                    className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+                    className="w-72 h-72 rounded-full mx-auto mb-4 object-cover"
                   />
-                  <p className="text-unpheric-gray">Unpheric - Ryan</p>
+                  <p className="text-unpheric-gray text-xl">Unpheric - Ryan Goman</p>
                 </div>
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-unpheric-purple/20 to-transparent rounded-2xl"></div>
@@ -152,20 +152,16 @@ const Home = () => {
             </h2>
             <div className="space-y-4 text-unpheric-gray text-lg leading-relaxed">
               <p>
-                From the depths of creative exploration to the heights of
-                musical innovation, Unpheric has spent the last six years
-                mastering the art of future bass production. Armed with FL
-                Studio and an insatiable passion for electronic music, this
-                rising artist crafts sonic landscapes that transport listeners
-                to otherworldly realms.
+                Unpheric, born Ryan Goman in Indonesia, is an electronic music
+                producer blending future bass with cinematic violin elements. 
+                Since starting his journey in 2018, he has developed a signature
+                sound that combines emotional melodies, organic strings, and powerful bass.
               </p>
               <p>
-                Each track is a journey through carefully designed soundscapes,
-                where melodic euphoria meets heavy bass drops, creating an
-                emotional rollercoaster that defines the future bass genre. With
-                influences ranging from cinematic scores to underground
-                electronic movements, Unpheric's music tells stories that
-                resonate with both the heart and the dancefloor.
+                He officially debuted in 2025 with the singles “Dimensional Tears”
+                and “Last Hope,” followed by his album “Fallen Angel” in September 2025
+                marking the beginning of a project focused on emotional storytelling
+                through bass music.
               </p>
             </div>
           </div>

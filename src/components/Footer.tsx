@@ -195,7 +195,7 @@ const Footer = () => {
             © {new Date().getFullYear()} Unpheric. All rights reserved.
           </p>
           <p className="text-unpheric-gray text-xs mt-2">
-            Future Bass • Electronic Music • FL Studio
+            Future Bass • Violin • Dubstep • Electronic Music • FL Studio
           </p>
         </div>
       </div>

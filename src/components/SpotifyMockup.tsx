@@ -103,7 +103,7 @@ const SpotifyMockup = () => {
               <Heart className="text-unpheric-purple w-6 h-6" />
               <a
                 className="w-12 h-12 bg-unpheric-purple rounded-full flex items-center justify-center"
-                href="https://open.spotify.com/artist/1gfwehyaOnHFFbuVGKrszq"
+                href="https://open.spotify.com/album/5RPA2cr6YCu4L3h4HVaD0D"
                 target="_blank"
                 rel="noopener noreferrer"
               >
