@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import fallenAngelCover from "../assets/images/single/unpheric-memories.jpg";
+import nightlightCover from "../assets/images/single/unpheric-nightlight.jpg";
+import walkawayCover from "../assets/images/single/unpheric-walkaway.jpg";
+import truthCover from "../assets/images/single/unpheric-truth.jpg";
 import { FaSpotify, FaYoutube, FaApple } from "react-icons/fa";
 
 const Single = () => {
@@ -13,6 +16,36 @@ const Single = () => {
       title: "Memories",
       cover: fallenAngelCover,
       description: "in the process of mixing | Coming Soon.",
+      spotify: "#",
+      apple: "#",
+      youtube: "#",
+      available: true,
+    },
+    {
+      id: "nightlight",
+      title: "Nightlight",
+      cover: nightlightCover,
+      description: "A gentle glow in the dark | Coming Soon.",
+      spotify: "#",
+      apple: "#",
+      youtube: "#",
+      available: true,
+    },
+    {
+      id: "walkaway",
+      title: "Walk Away",
+      cover: walkawayCover,
+      description: "A journey into the unknown | Coming Soon.",
+      spotify: "#",
+      apple: "#",
+      youtube: "#",
+      available: true,
+    },
+    {
+      id: "truth",
+      title: "Truth",
+      cover: truthCover,
+      description: "Unveiling the real you | Coming Soon.",
       spotify: "#",
       apple: "#",
       youtube: "#",

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import fallenAngelCover from "../assets/images/album/fallen-angel-v2.jpg";
+import remnantCover from "../assets/images/album/remnant.jpg";
 
 const Album = () => {
   const albums = [
@@ -9,6 +10,12 @@ const Album = () => {
       id: "fallen-angel",
       title: "Fallen Angel",
       cover: fallenAngelCover,
+      available: true,
+    },
+    {
+      id: "remnant",
+      title: "Remnant",
+      cover: remnantCover,
       available: true,
     },
     {
